@@ -11,12 +11,13 @@ class ActorsController < ApplicationController
 		if actor.save
 			redirect_to "/actors"
 		else 
+			flash[:errors] = actor.errors.full_messages
 			redirect_to "/actors/new"
 	end
 end
 	private 
 	def actor_params
-	params.require(:actor).permit(:first_name, :last_name)
+		params.require(:actor).permit(:first_name, :last_name)
 	end
 end
 
